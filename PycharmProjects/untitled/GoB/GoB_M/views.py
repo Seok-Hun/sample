@@ -44,4 +44,4 @@ def answer(request):
                     'type':'buttons',
                     'buttons':['오늘','내일']
                 }
-        }}
+        })
