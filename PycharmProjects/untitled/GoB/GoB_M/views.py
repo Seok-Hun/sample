@@ -2,9 +2,16 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 import json
+import urllib.request
  
+def request(url):
+ http_response = urllib.request(url)
+ byte_data     = http_response.read()
+ text_data     = byte_data.decode('utf-8')
+ return text_data
  
- 
+shool_menu = request(http://ace.gachon.ac.kr/dormitory/reference/menu)
+
 def keyboard(request):
  
     return JsonResponse({
