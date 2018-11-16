@@ -5,6 +5,7 @@ import json
 import requests
 from bs4 import BeautifulSoup
 import re
+from datetime import datetime
 
 Tag = '#container > div.substance > div.sub_contents > table > tbody > tr '
 URL = 'http://ace.gachon.ac.kr/dormitory/reference/menu'
@@ -35,6 +36,7 @@ def answer(request):
             day = int(list[1])
             date = datetime.now()
             for cho2 in cho.select('td'):
+                if day == date.day;
                     menu = cho2
         return JsonResponse({
             'message': {
