@@ -29,18 +29,17 @@ def answer(request):
 
     if datacontent=='오늘':
         for cho in soup.select(Tag):
+            a = re.sub('월|일', ' ', cho.find('th').text)
+            a[-3:]
+            list = a.split()
+            day = int(list[1])
+            date = datetime.now()
             for cho2 in cho.select('td'):
-                a = re.sub('월|일', ' ', cho.find('th').text)
-                a[-3:]
-                list = a.split()
-                month = int(list[0])
-                day = int(list[1])
-                date = datetime.now()
-                if month == date.month and day == date.day:
+                if day == date.day:
                     menu = cho2
         return JsonResponse({
             'message': {
-                'text': '오늘 메뉴' + menu
+                'text': menu
             },
             'keyboard': {
                 'type': 'buttons',
@@ -48,20 +47,19 @@ def answer(request):
             }
         })
 
-    if datacontent=='내일':
+    elif datacontent=='내일':
         for cho in soup.select(Tag):
+            a = re.sub('월|일', ' ', cho.find('th').text)
+            a[-3:]
+            list = a.split()
+            day = int(list[1])
+            date = datetime.now()
             for cho2 in cho.select('td'):
-                a = re.sub('월|일', ' ', cho.find('th').text)
-                a[-3:]
-                list = a.split()
-                month = int(list[0])
-                day = int(list[1])
-                date = datetime.now()
-                if month == date.month and day == date.day + 1:
+                if day == date.day + 1:
                     menu = cho2
         return JsonResponse({
             'message': {
-                'text': '내일 메뉴' + menu
+                'text': menu
             },
             'keyboard': {
                 'type': 'buttons',
