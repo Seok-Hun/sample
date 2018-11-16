@@ -37,7 +37,7 @@ def answer(request):
             date = datetime.now()
             for cho2 in cho.select('td'):
                 if day == date.day:
-                    menu = cho2
+                    menu = cho2.text
         return JsonResponse({
             'message': {
                 'text': menu
@@ -57,7 +57,7 @@ def answer(request):
             date = datetime.now()
             for cho2 in cho.select('td'):
                 if day == date.day + 1:
-                    menu = cho2
+                    menu = cho2.text
         return JsonResponse({
             'message': {
                 'text': menu
