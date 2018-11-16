@@ -41,6 +41,10 @@ def answer(request):
                 'message': {
                     'text': '오늘 메뉴' + menu
                 }
+                'keyboard':{
+                    'type':'text'
+                }
+        })
 
     if datacontent.find('내일') != -1:
         for cho in soup.select(Tag):
@@ -56,4 +60,8 @@ def answer(request):
         return JsonResponse({
                 'message': {
                     'text': '내일 메뉴' + menu
-                } 
+                }
+                'keyboard':{
+                    'type':'text'
+                }
+        }) 
