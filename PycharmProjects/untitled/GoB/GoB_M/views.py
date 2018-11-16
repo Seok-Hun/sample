@@ -39,7 +39,8 @@ def answer(request):
         })
 
     elif datacontent == '내일':
-        date=date+1
+        global date
+        date+=1
         return JsonResponse({
             'keyboard': {
                 'type': 'buttons',
@@ -56,7 +57,7 @@ def answer(request):
             list = a.split()
             day = int(list[1])
             for cho2 in cho.select('td'):
-                if day == date.day:
+                if day == date:
                     menu[i] = cho2.text
                     i+=1
         return JsonResponse({
@@ -78,7 +79,7 @@ def answer(request):
             list = a.split()
             day = int(list[1])
             for cho2 in cho.select('td'):
-                if day == date.day:
+                if day == date:
                     menu[i] = cho2.text
                     i+=1
         return JsonResponse({
@@ -100,7 +101,7 @@ def answer(request):
             list = a.split()
             day = int(list[1])
             for cho2 in cho.select('td'):
-                if day == date.day:
+                if day == date:
                     menu[i] = cho2.text
                     i+=1
         return JsonResponse({
