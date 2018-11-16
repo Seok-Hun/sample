@@ -7,6 +7,10 @@ from bs4 import BeautifulSoup
 import re
 from datetime import datetime
 
+time = datetime.now()
+date = time.day
+M = time.month
+
 Tag = '#container > div.substance > div.sub_contents > table > tbody > tr '
 URL = 'http://ace.gachon.ac.kr/dormitory/reference/menu'
 req = requests.get(URL)
@@ -27,11 +31,12 @@ def answer(request):
     json_str = ((request.body).decode('utf-8'))
     received_json_data = json.loads(json_str)
     datacontent = received_json_data['content']
-    time = datetime.now()
-    date = time.day
-    M = time.month
 
+    global date
+    global M
+    global count
     if datacontent == '오늘':
+        count=0
         return JsonResponse({
             'message': {
                 'text': str(M) + '월' + str(date) + '일 식단'
@@ -43,7 +48,7 @@ def answer(request):
         })
 
     elif datacontent == '내일':
-        date+=1
+        count=1
         return JsonResponse({
             'message': {
                 'text': str(M) + '월' + str(date+1) + '일 식단'
@@ -63,9 +68,14 @@ def answer(request):
             list = a.split()
             day = int(list[1])
             for cho2 in cho.select('td'):
-                if day == date:
-                    menu[i] = cho2.text
-                    i+=1
+                if count == 1:
+                    if day == date+1:
+                        menu[i] = cho2.text
+                        i+=1
+                else:
+                    if day == date:
+                        menu[i] = cho2.text
+                        i+=1
         return JsonResponse({
             'message': {
                 'text': menu[0]
@@ -85,9 +95,14 @@ def answer(request):
             list = a.split()
             day = int(list[1])
             for cho2 in cho.select('td'):
-                if day == date:
-                    menu[i] = cho2.text
-                    i+=1
+                if count == 1:
+                    if day == date+1:
+                        menu[i] = cho2.text
+                        i+=1
+                else:
+                    if day == date:
+                        menu[i] = cho2.text
+                        i+=1
         return JsonResponse({
             'message': {
                 'text': menu[1]
@@ -107,9 +122,14 @@ def answer(request):
             list = a.split()
             day = int(list[1])
             for cho2 in cho.select('td'):
-                if day == date:
-                    menu[i] = cho2.text
-                    i+=1
+                if count == 1:
+                    if day == date+1:
+                        menu[i] = cho2.text
+                        i+=1
+                else:
+                    if day == date:
+                        menu[i] = cho2.text
+                        i+=1
         return JsonResponse({
             'message': {
                 'text': menu[2]
