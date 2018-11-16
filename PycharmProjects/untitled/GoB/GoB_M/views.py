@@ -16,8 +16,8 @@ soup = BeautifulSoup(html, 'html.parser')
 
 def keyboard(request):
     return JsonResponse({
-        "type": "button",
-        "button":['오늘','내일']
+        "type": "buttons",
+        "buttons":['오늘','내일']
     })
 
 
@@ -43,8 +43,8 @@ def answer(request):
                 'text': '오늘 메뉴' + menu
             },
             'keyboard': {
-                'type': 'button',
-                'button':['오늘','내일']
+                'type': 'buttons',
+                'buttons':['오늘','내일']
             }
         })
 
@@ -64,7 +64,7 @@ def answer(request):
                 'text': '내일 메뉴' + menu
             },
             'keyboard': {
-                'type': 'button',
-                'button':['오늘','내일']
+                'type': 'buttons',
+                'buttons':['오늘','내일']
             }
         })
