@@ -26,7 +26,7 @@ def answer(request):
     received_json_data = json.loads(json_str)
     datacontent = received_json_data['content']
     
-    if datacontent=='오늘':
+    if datacontent.find('오늘') != -1:
         for cho in soup.select(Tag):
             for cho2 in cho.select('td'):
                 a = re.sub('월|일', ' ', cho.find('th').text)
@@ -46,7 +46,7 @@ def answer(request):
                 }
         })
 
-    if datacontent :
+    if datacontent.find('내일') != -1:
         for cho in soup.select(Tag):
             for cho2 in cho.select('td'):
                 a = re.sub('월|일', ' ', cho.find('th').text)
