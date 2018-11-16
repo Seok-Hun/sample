@@ -91,7 +91,7 @@ def answer(request):
             }
         })
 
-    if datacontent == '저녁'
+    if datacontent == '저녁':
         menu = [0,0,0]
         i = 0
         for cho in soup.select(Tag):
