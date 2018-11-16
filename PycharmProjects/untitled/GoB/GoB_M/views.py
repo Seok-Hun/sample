@@ -29,9 +29,13 @@ def answer(request):
     datacontent = received_json_data['content']
     time = datetime.now()
     date = time.day
+    M = time.month
 
     if datacontent == '오늘':
         return JsonResponse({
+            'message': {
+                'text': str(M) + '월' + str(date) + '일 식단'
+            },
             'keyboard': {
                 'type': 'buttons',
                 'buttons': ['아침','점심','저녁']
@@ -41,6 +45,9 @@ def answer(request):
     elif datacontent == '내일':
         date+=1
         return JsonResponse({
+            'message': {
+                'text': str(M) + '월' + str(date+1) + '일 식단'
+            },
             'keyboard': {
                 'type': 'buttons',
                 'buttons': ['아침','점심','저녁']
