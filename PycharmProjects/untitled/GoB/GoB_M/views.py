@@ -36,7 +36,7 @@ def answer(request):
             day = int(list[1])
             date = datetime.now()
             for cho2 in cho.select('td'):
-                if day == date.day;
+                if day == date.day:
                     menu = cho2
         return JsonResponse({
             'message': {
