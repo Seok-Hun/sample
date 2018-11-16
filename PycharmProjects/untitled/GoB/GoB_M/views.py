@@ -16,8 +16,7 @@ soup = BeautifulSoup(html, 'html.parser')
 def keyboard(request):
  
     return JsonResponse({
-        "type":"button",
-        "button":['오늘','내일']
+        "type":"text"
     })
  
 @csrf_exempt
@@ -41,14 +40,13 @@ def answer(request):
         return JsonResponse({
                 'message': {
                     'text': '오늘 메뉴' + menu
-                }
+                },
                 'keyboard':{
-                    'type':'button',
-                    'button':['오늘','내일']
+                    'type':'text'
                 }
         })
 
-    if datacontent=='내일':
+    if datacontent :
         for cho in soup.select(Tag):
             for cho2 in cho.select('td'):
                 a = re.sub('월|일', ' ', cho.find('th').text)
@@ -62,9 +60,8 @@ def answer(request):
         return JsonResponse({
                 'message': {
                     'text': '내일 메뉴' + menu
-                }
+                },
                 'keyboard':{
-                    'type':'button',
-                    'button':['오늘','내일']
+                    'type':'text'
                 }
         }) 
