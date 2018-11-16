@@ -39,7 +39,6 @@ def answer(request):
         })
 
     elif datacontent == '내일':
-        global date
         date+=1
         return JsonResponse({
             'keyboard': {
