@@ -42,7 +42,6 @@ def answer(request):
             'message': {
                 'text': menu
             },
-            if section==1:
 
             'keyboard': {
                 'type': 'buttons',
